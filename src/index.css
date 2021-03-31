@@ -1,0 +1,88 @@
+@font-face {
+  font-family: 'GTWalsheimRegular';
+  src: local('GTWalsheimRegular'), url(./fonts/gt-walsheim-regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'GTWalsheimMedium';
+  src: local('GTWalsheimMedium'), url(./fonts/gt-walsheim-medium.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'GTWalsheimBold';
+  src: local('GTWalsheimBold'), url(./fonts/gt-walsheim-bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'GTWalsheimLight';
+  src: local('GTWalsheimLight'), url(./fonts/gt-walsheim-light.ttf) format('truetype');
+}
+
+body {
+  background-color: white;
+  margin:0;
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #0e0e15, #1a1d29);
+  z-index: 1;
+}
+
+svg.MuiSvgIcon-root.MuiSelect-icon{
+  color: white;
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: white !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .makeStyles-title-6 {
+    font-size: 14px !important;
+  }
+
+  .makeStyles-paper-2 {
+    margin: 22% 0% 0 0% !important;
+  }
+
+  .makeStyles-logo-4 {
+    width: 14vh !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    display: block !important;
+  }
+}
+
+.custom-icon {
+  width: 32px !important;
+  height: 32px !important;
+  border: 1px solid #41435B;
+  box-sizing: border-box;
+}
+
+.custom-icon img:hover {
+  filter: hue-rotate(0deg) saturate(61.5) brightness(63.5);
+}
+
+.MuiPopover-root .MuiList-padding {
+  padding:0 !important;
+}
+.MuiPopover-root .MuiPaper-root {
+  border-radius:0;
+}
+
+.MuiTab-root {
+  min-width: fit-content !important;
+  max-width: fit-content !important;
+  padding: 6px 0 !important;
+  margin-right: 16px !important;
+}
+
+.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
+  top: 155px !important;
+}
