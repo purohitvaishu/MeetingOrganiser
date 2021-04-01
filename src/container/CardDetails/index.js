@@ -1,15 +1,50 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Typography, CardContent, Button } from "@material-ui/core";
+import { connect } from "react-redux";
+import { createAction } from "@reduxjs/toolkit";
 import useStyles from "./index.style";
 import PopupDialog from "../../component/Popup";
 
-const CardDetails = ({ name, totalRooms }) => {
+const localValues = createAction("LOCAL_STORAGE");
+
+const CardDetails = ({ name, totalRooms, floors, meet, localValues }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [freeRoom, setFreeRoom] = useState(0);
+  const [meetings, setMeetings] = useState(0);
+  const [data, setData] = useState([]);
 
   const handleClick = () => {
     setOpen(true);
+  };
+
+  useEffect(() => {
+    if (!meet) {
+      setData(floors);
+      setFreeRoom(totalRooms);
+    } else {
+      const filter = meet.filter(e => e.name === name);
+      // console.log("floores:======", filter);
+      // const names = filter.length
+      //   ? filter[0].meetingList.map(d =>
+      //       floors.rooms.filter(e => e !== d.roomName && )
+      //     )
+      //   : [];
+      // console.log("filter:===", names);
+      if (filter.length) {
+        setFreeRoom(filter[0].freeRooms);
+        setMeetings(filter[0].totalMeetings);
+        setData(filter[0].meetingList);
+      } else {
+        setData(floors);
+        setFreeRoom(totalRooms);
+      }
+    }
+  }, [meet, name]);
+
+  const handleValues = data => {
+    localValues(data);
   };
 
   return (
@@ -65,7 +100,7 @@ const CardDetails = ({ name, totalRooms }) => {
               </Typography>
             </Grid>
             <Grid item xs={6} style={{ textAlign: "end" }}>
-              <Typography className={classes.typography}>5</Typography>
+              <Typography className={classes.typography}>{freeRoom}</Typography>
             </Grid>
           </Grid>
           <Grid className={classes.dotted}>
@@ -77,7 +112,7 @@ const CardDetails = ({ name, totalRooms }) => {
               </Typography>
             </Grid>
             <Grid item xs={6} style={{ textAlign: "end" }}>
-              <Typography className={classes.typography}>100</Typography>
+              <Typography className={classes.typography}>{meetings}</Typography>
             </Grid>
           </Grid>
           <Grid className={classes.dotted}>
@@ -89,7 +124,7 @@ const CardDetails = ({ name, totalRooms }) => {
               </Typography>
             </Grid>
             <Grid item xs={6} style={{ textAlign: "end" }}>
-              <Typography className={classes.typography}>10</Typography>
+              <Typography className={classes.typography}>0</Typography>
             </Grid>
           </Grid>
         </CardContent>
@@ -98,9 +133,20 @@ const CardDetails = ({ name, totalRooms }) => {
         open={open}
         handleClose={() => setOpen(false)}
         building={name}
+        data={data}
+        freeRoom={freeRoom}
+        meet={meet}
+        handleValues={handleValues}
       />
     </Grid>
   );
 };
 
-export default CardDetails;
+const mapStateToProps = state => ({
+  name: state.Info.building.name,
+  totalRooms: state.Info.building.rooms,
+  floors: state.Info.building.floors,
+  meet: state.Info.meetings
+});
+
+export default connect(mapStateToProps, { localValues })(CardDetails);

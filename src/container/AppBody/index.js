@@ -17,7 +17,7 @@ import MockDetails from "../../lib/mockData.json";
 const buildingInfo = createAction("BUILDING_INFO");
 
 // eslint-disable-next-line react/prop-types
-const AppBody = ({ buildingInfo, name, totalRooms }) => {
+const AppBody = ({ buildingInfo, name }) => {
   const classes = useStyles();
   const [select, setSelect] = useState(1);
 
@@ -29,7 +29,7 @@ const AppBody = ({ buildingInfo, name, totalRooms }) => {
 
   useEffect(() => {
     if (!name) {
-      const data = MockDetails.filter(v => v.id === 1);
+      const data = MockDetails.filter(v => v.id === 5);
       buildingInfo(data[0]);
     }
   }, [name]);
@@ -66,7 +66,7 @@ const AppBody = ({ buildingInfo, name, totalRooms }) => {
       {renderHeading()}
       <br />
       <Grid container spacing={4}>
-        <CardDetails name={name} totalRooms={totalRooms} />
+        <CardDetails />
       </Grid>
       <Grid container spacing={4}>
         <TotalDetails />
@@ -75,9 +75,4 @@ const AppBody = ({ buildingInfo, name, totalRooms }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  name: state.Info.building.name,
-  totalRooms: state.Info.building.rooms
-});
-
-export default connect(mapStateToProps, { buildingInfo })(AppBody);
+export default connect(null, { buildingInfo })(AppBody);

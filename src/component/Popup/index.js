@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 import { format } from "date-fns";
 import React, { useState } from "react";
@@ -141,17 +142,30 @@ const CustomDialog = withStyles({
 })(Dialog);
 
 // eslint-disable-next-line react/prop-types
-const PopupDialog = ({ open, handleClose, building }) => {
+const PopupDialog = ({
+  open,
+  handleClose,
+  building,
+  data,
+  freeRoom,
+  meet,
+  handleValues
+}) => {
   const classes = useStyles();
   const [stepIndex, setStepIndex] = useState(0);
   const [appointmentDateSelected, setAppointmentDateSelected] = useState(null);
   const [appointmentSlot, setAppointmentSlot] = useState(null);
   const [appointmentEndSlot, setAppointmentEndSlot] = useState(null);
   const [next, setNext] = useState(0);
-  const [value, setValue] = useState("female");
+  const [value, setValue] = useState();
+  const [floor, setFloor] = useState();
+  const [room, setRoom] = useState();
 
   const handleChange = event => {
+    const value = event.target.value.split("_");
     setValue(event.target.value);
+    setFloor(value[0]);
+    setRoom(value[1]);
   };
 
   const handleSaveClick = () => {
@@ -159,6 +173,64 @@ const PopupDialog = ({ open, handleClose, building }) => {
   };
 
   const handleConfirm = () => {
+    const found = meet ? meet.some(el => el.name === building) : 0;
+    let newStore;
+    if (found) {
+      newStore = meet.map(data =>
+        data.name === building
+          ? {
+              name: building,
+              freeRooms: data.freeRooms - 1,
+              totalMeetings: data.totalMeetings + 1,
+              meetingList: [
+                ...data.meetingList,
+                {
+                  roomName: room,
+                  floor,
+                  startTime: appointmentSlot,
+                  endTime: appointmentEndSlot,
+                  date: appointmentDateSelected
+                }
+              ]
+            }
+          : data
+      );
+    } else if (!meet) {
+      newStore = [
+        {
+          name: building,
+          freeRooms: freeRoom - 1,
+          totalMeetings: 1,
+          meetingList: [
+            {
+              roomName: room,
+              floor,
+              startTime: appointmentSlot,
+              endTime: appointmentEndSlot,
+              date: appointmentDateSelected
+            }
+          ]
+        }
+      ];
+    } else
+      newStore = [
+        ...meet,
+        {
+          name: building,
+          freeRooms: freeRoom - 1,
+          totalMeetings: 1,
+          meetingList: [
+            {
+              roomName: room,
+              floor,
+              startTime: appointmentSlot,
+              endTime: appointmentEndSlot,
+              date: appointmentDateSelected
+            }
+          ]
+        }
+      ];
+    localStorage.setItem("Scheduler", JSON.stringify(newStore));
     setAppointmentDateSelected(null);
     setAppointmentSlot(null);
     setAppointmentEndSlot(null);
@@ -166,6 +238,7 @@ const PopupDialog = ({ open, handleClose, building }) => {
     setValue("female");
     setStepIndex(0);
     handleClose();
+    handleValues(newStore);
   };
 
   const closeEvent = () => {
@@ -295,21 +368,23 @@ const PopupDialog = ({ open, handleClose, building }) => {
                 </Typography>
                 <FormControl component="fieldset">
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label="floor"
+                    name="floor"
                     value={value}
                     onChange={handleChange}
                   >
-                    <FormControlLabel
-                      value="female"
-                      control={<Radio />}
-                      label="Female"
-                    />
-                    <FormControlLabel
-                      value="male"
-                      control={<Radio />}
-                      label="Male"
-                    />
+                    {data.length &&
+                      data.map(value =>
+                        value.rooms.map(room => {
+                          return (
+                            <FormControlLabel
+                              value={`${value.name}_${room}`}
+                              control={<Radio />}
+                              label={`${value.name}, ${room}`}
+                            />
+                          );
+                        })
+                      )}
                   </RadioGroup>
                 </FormControl>
               </>
@@ -325,16 +400,16 @@ const PopupDialog = ({ open, handleClose, building }) => {
                 </Box>
                 <Box className={classes.flexDiv}>
                   <Typography className={classes.subhead}>Floor: </Typography>
-                  <Typography className={classes.name}>7</Typography>
+                  <Typography className={classes.name}>{floor}</Typography>
                 </Box>
                 <Box className={classes.flexDiv}>
                   <Typography className={classes.subhead}>Room:</Typography>
-                  <Typography className={classes.name}>Kaveri</Typography>
+                  <Typography className={classes.name}>{room}</Typography>
                 </Box>
                 <Box className={classes.flexDiv}>
                   <Typography className={classes.subhead}>Meeting:</Typography>
                   <Typography className={classes.name}>
-                    {format(appointmentDateSelected, "MMM ddd, yyyy")} at{" "}
+                    {format(appointmentDateSelected, "MMM dd, yyyy")} at{" "}
                     {appointmentSlot} to {appointmentEndSlot}
                   </Typography>
                 </Box>
