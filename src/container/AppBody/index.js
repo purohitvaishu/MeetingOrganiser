@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Grid,
@@ -7,17 +7,32 @@ import {
   Select,
   MenuItem
 } from "@material-ui/core";
+import { connect } from "react-redux";
+import { createAction } from "@reduxjs/toolkit";
 import useStyles from "./index.style";
 import CardDetails from "../CardDetails";
 import TotalDetails from "../TotalDetails";
+import MockDetails from "../../lib/mockData.json";
 
-const AppBody = () => {
+const buildingInfo = createAction("BUILDING_INFO");
+
+// eslint-disable-next-line react/prop-types
+const AppBody = ({ buildingInfo, name, totalRooms }) => {
   const classes = useStyles();
-  const [select, setSelect] = useState("Building 1");
+  const [select, setSelect] = useState(1);
 
   const handleSelectChange = event => {
     setSelect(event.target.value);
+    const data = MockDetails.filter(v => v.id === event.target.value);
+    buildingInfo(data[0]);
   };
+
+  useEffect(() => {
+    if (!name) {
+      const data = MockDetails.filter(v => v.id === 1);
+      buildingInfo(data[0]);
+    }
+  }, [name]);
 
   const renderHeading = () => {
     return (
@@ -34,15 +49,11 @@ const AppBody = () => {
               value={select}
               onChange={event => handleSelectChange(event)}
             >
-              <MenuItem value="Building 1" className={classes.menuItem}>
-                Building 1
-              </MenuItem>
-              <MenuItem value="Building 2" className={classes.menuItem}>
-                Building 2
-              </MenuItem>
-              <MenuItem value="Building 3" className={classes.menuItem}>
-                Building 3
-              </MenuItem>
+              {MockDetails.map(data => (
+                <MenuItem value={data.id} className={classes.menuItem}>
+                  {data.name}
+                </MenuItem>
+              ))}
             </Select>
           </Paper>
         </Grid>
@@ -55,7 +66,7 @@ const AppBody = () => {
       {renderHeading()}
       <br />
       <Grid container spacing={4}>
-        <CardDetails building={select} />
+        <CardDetails name={name} totalRooms={totalRooms} />
       </Grid>
       <Grid container spacing={4}>
         <TotalDetails />
@@ -64,4 +75,9 @@ const AppBody = () => {
   );
 };
 
-export default AppBody;
+const mapStateToProps = state => ({
+  name: state.Info.building.name,
+  totalRooms: state.Info.building.rooms
+});
+
+export default connect(mapStateToProps, { buildingInfo })(AppBody);

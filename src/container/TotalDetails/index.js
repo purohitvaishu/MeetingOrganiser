@@ -13,21 +13,21 @@ const TotalDetails = () => {
           <Grid item md={4} xs={12}>
             <div className={classes.grid}>
               <Typography className={classes.contentText}>Buildings</Typography>
-              <Typography className={classes.incrementStyle}>4</Typography>
+              <Typography className={classes.incrementStyle}>5</Typography>
             </div>
           </Grid>
           <br />
           <Grid item md={4} xs={12} style={{ paddingLeft: 32 }}>
             <div className={`${classes.grid}`}>
               <Typography className={classes.contentText}>Rooms</Typography>
-              <Typography className={classes.incrementStyle}>20</Typography>
+              <Typography className={classes.incrementStyle}>72</Typography>
             </div>
           </Grid>
           <br />
           <Grid item md={4} xs={12} style={{ paddingLeft: 32 }}>
             <div className={classes.grid}>
               <Typography className={classes.contentText}>Meetings</Typography>
-              <Typography className={classes.incrementStyle}>100</Typography>
+              <Typography className={classes.incrementStyle}>0</Typography>
             </div>
           </Grid>
         </div>

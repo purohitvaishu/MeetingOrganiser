@@ -1,0 +1,234 @@
+[
+  {
+    "id": 1,
+    "name": "Building 1",
+    "rooms": 20,
+    "floor": 4,
+    "floors": [
+      {
+        "id": 1,
+        "name": "Floor 1",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri",
+          "Aryabhatta",
+          "Vyan"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Floor 2",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri",
+          "Aryabhatta",
+          "Vyan"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Floor 3",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri",
+          "Aryabhatta",
+          "Vyan"
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Floor 4",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri",
+          "Aryabhatta",
+          "Vyan"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Building 2",
+    "rooms": 10,
+    "floor": 3,
+    "floors": [
+      {
+        "id": 1,
+        "name": "Floor 1",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri",
+          "Aryabhatta"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Floor 2",
+        "rooms": [
+          "Kaveri",
+          "Aryabhatta",
+          "Vyan"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Floor 3",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Building 3",
+    "rooms": 5,
+    "floor": 2,
+    "floors": [
+      {
+        "id": 1,
+        "name": "Floor 1",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Floor 2",
+        "rooms": [
+          "Aryabhatta",
+          "Vyan"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Building 4",
+    "rooms": 15,
+    "floor": 4,
+    "floors": [
+      {
+        "id": 1,
+        "name": "Floor 1",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri",
+          "Aryabhatta",
+          "Vyan"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Floor 2",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri",
+          "Aryabhatta",
+          "Vyan"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Floor 3",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri"
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Floor 4",
+        "rooms": [
+          "Aryabhatta",
+          "Vyan"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Building 5",
+    "rooms": 22,
+    "floor": 7,
+    "floors": [
+      {
+        "id": 1,
+        "name": "Floor 1",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri",
+          "Aryabhatta",
+          "Vyan"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Floor 2",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Floor 3",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri",
+          "Aryabhatta",
+          "Vyan"
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Floor 4",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri"
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Floor 5",
+        "rooms": [
+          "Punjab",
+          "Tamil Nadu",
+          "Kaveri",
+          "Aryabhatta",
+          "Vyan"
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Floor 6",
+        "rooms": [
+          "Punjab"
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Floor 7",
+        "rooms": [
+          "Vyan"
+        ]
+      }
+    ]
+  }
+]

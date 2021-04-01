@@ -3,6 +3,7 @@ import { ThemeProvider } from "@material-ui/core";
 import dotenv from "dotenv";
 import { darkTheme } from "../Theme";
 import App from "./App";
+import { startSaga } from "./RootSaga";
 
 dotenv.config();
 
@@ -17,4 +18,7 @@ class ThemeSelector extends React.Component {
   }
 }
 
-export default ThemeSelector;
+export default () => {
+  startSaga();
+  return <ThemeSelector />;
+};

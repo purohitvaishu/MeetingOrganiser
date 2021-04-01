@@ -4,7 +4,7 @@ import { Grid, Typography, CardContent, Button } from "@material-ui/core";
 import useStyles from "./index.style";
 import PopupDialog from "../../component/Popup";
 
-const CardDetails = ({ building }) => {
+const CardDetails = ({ name, totalRooms }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -39,7 +39,7 @@ const CardDetails = ({ building }) => {
               </Typography>
             </Grid>
             <Grid item xs={6} style={{ textAlign: "end" }}>
-              <Typography className={classes.typography}>{building}</Typography>
+              <Typography className={classes.typography}>{name}</Typography>
             </Grid>
           </Grid>
           <Grid className={classes.dotted}>
@@ -51,7 +51,9 @@ const CardDetails = ({ building }) => {
               </Typography>
             </Grid>
             <Grid item xs={6} style={{ textAlign: "end" }}>
-              <Typography className={classes.typography}>20</Typography>
+              <Typography className={classes.typography}>
+                {totalRooms}
+              </Typography>
             </Grid>
           </Grid>
           <Grid className={classes.dotted}>
@@ -95,7 +97,7 @@ const CardDetails = ({ building }) => {
       <PopupDialog
         open={open}
         handleClose={() => setOpen(false)}
-        building={building}
+        building={name}
       />
     </Grid>
   );
