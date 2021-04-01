@@ -82,7 +82,50 @@ svg.MuiSvgIcon-root.MuiSelect-icon{
   padding: 6px 0 !important;
   margin-right: 16px !important;
 }
-
+/* 
 .MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
   top: 155px !important;
+} */
+
+.MuiStepLabel-label.MuiStepLabel-active {
+  color: white !important;
+  opacity: 1;
+}
+
+.MuiStepLabel-label {
+  color: white !important;
+  opacity: 0.5;
+}
+
+.MuiStepIcon-root.MuiStepIcon-active, .MuiStepIcon-root.MuiStepIcon-completed {
+  color: #68dbda !important;
+}
+
+.MuiPickersToolbar-toolbar, .MuiPickersDay-daySelected, .MuiPickersClockPointer-pointer, .MuiPickersClock-pin, .MuiPickersClockPointer-noPoint {
+  background-color: #68dbda !important;
+}
+
+.MuiPickersClockPointer-thumb {
+  border: 14px solid #68dbda !important;
+}
+
+.MuiPickersModal-dialogRoot span.MuiButton-label, .MuiRadio-colorSecondary.Mui-checked {
+  color: #68dbda !important;
+}
+
+.react-time-picker__wrapper {
+  border: none !important;
+  border-bottom: 1px solid black !important;
+}
+
+.react-time-picker__inputGroup input[type=time], .react-time-picker__inputGroup__divider, .react-time-picker__inputGroup span {
+  color: black !important;
+}
+
+:focus {
+  outline: 0 !important;
+}
+
+.react-time-picker--disabled {
+  background-color: transparent !important;
 }

@@ -13,7 +13,7 @@ import TotalDetails from "../TotalDetails";
 
 const AppBody = () => {
   const classes = useStyles();
-  const [select, setSelect] = useState(0);
+  const [select, setSelect] = useState("Building 1");
 
   const handleSelectChange = event => {
     setSelect(event.target.value);
@@ -34,13 +34,13 @@ const AppBody = () => {
               value={select}
               onChange={event => handleSelectChange(event)}
             >
-              <MenuItem value="0" className={classes.menuItem}>
+              <MenuItem value="Building 1" className={classes.menuItem}>
                 Building 1
               </MenuItem>
-              <MenuItem value="1" className={classes.menuItem}>
+              <MenuItem value="Building 2" className={classes.menuItem}>
                 Building 2
               </MenuItem>
-              <MenuItem value="2" className={classes.menuItem}>
+              <MenuItem value="Building 3" className={classes.menuItem}>
                 Building 3
               </MenuItem>
             </Select>
@@ -55,7 +55,7 @@ const AppBody = () => {
       {renderHeading()}
       <br />
       <Grid container spacing={4}>
-        <CardDetails />
+        <CardDetails building={select} />
       </Grid>
       <Grid container spacing={4}>
         <TotalDetails />

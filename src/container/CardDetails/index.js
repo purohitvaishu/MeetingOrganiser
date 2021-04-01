@@ -1,9 +1,16 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+import React, { useState } from "react";
 import { Grid, Typography, CardContent, Button } from "@material-ui/core";
 import useStyles from "./index.style";
+import PopupDialog from "../../component/Popup";
 
-const CardDetails = () => {
+const CardDetails = ({ building }) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
 
   return (
     <Grid item xs={12}>
@@ -13,7 +20,11 @@ const CardDetails = () => {
             <Typography className={classes.cardTitle}>Details</Typography>
           </Grid>
           <Grid item xs={2} style={{ textAlign: "end" }}>
-            <Button variant="contained" className={classes.buttonDiv}>
+            <Button
+              variant="contained"
+              className={classes.buttonDiv}
+              onClick={handleClick}
+            >
               Add a Meeting
             </Button>
           </Grid>
@@ -24,11 +35,11 @@ const CardDetails = () => {
               <Typography
                 className={`${classes.typography} ${classes.greyTypography}`}
               >
-                Building Name
+                Building
               </Typography>
             </Grid>
             <Grid item xs={6} style={{ textAlign: "end" }}>
-              <Typography className={classes.typography}>Building 1</Typography>
+              <Typography className={classes.typography}>{building}</Typography>
             </Grid>
           </Grid>
           <Grid className={classes.dotted}>
@@ -81,6 +92,11 @@ const CardDetails = () => {
           </Grid>
         </CardContent>
       </div>
+      <PopupDialog
+        open={open}
+        handleClose={() => setOpen(false)}
+        building={building}
+      />
     </Grid>
   );
 };
